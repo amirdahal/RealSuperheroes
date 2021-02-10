@@ -19,64 +19,59 @@
 
 </section>
 
-<section class="gallery3 cid-so2thctN8J" id="gallery3-d">  
+<section class="gallery3 cid-so2thctN8J mt-1  pt-5" id="gallery3-d">
     <div class="container-fluid">
-        <div class="mbr-section-head">
-            <h4 class="mbr-section-title mbr-fonts-style align-center display-2">
-                <strong>Top headlines</strong>
-            </h4>
-        </div>
-        <div class="row mt-4">
-
-            {% for n in news %}
-            <div class="item features-image сol-12 col-md-6 col-lg-3">
-                <div class="item-wrapper">
-                    <div class="item-img">
-                        <img src="{{ n.image.url }}" height="200">
+        <div class="row">
+            <div class="col-12 col-sm-8">
+				<div class="mbr-section-head mb-1">
+					<div class="mbr-section-head text-center">
+                        <h4 class="mbr-section-title mbr-fonts-style mb-0 display-2">
+                            <strong>Get inspired by the best</strong>
+                        </h4>
                     </div>
-                    <div class="item-content">
-                        <h5 class="item-title mbr-fonts-style display-7">
-                            <strong>{{ n.headline }}</strong>
-                        </h5>
-                        
-                        <p class="mbr-text mbr-fonts-style mt-3 display-7">
-                            {{ n.summary|slice:"0:100" }}...
-                            <a href="{% url 'single_news' n.id %}" class="text-primary">&nbsp;Read more</a>
-                        </p>
-                    </div>
-                    {% comment %} <div class="mbr-section-btn item-footer mt-2"><a href="single_news.html" class="btn btn-primary item-btn display-7">R e a d</a></div> {% endcomment %}
-                </div>
-            </div>
-           {% endfor %}
+				</div>
+				<div class="row mt-1">
+					<!-- loop from here -->
+                    {% for i in interview %}
+					<div class="item features-image сol-12 col-sm-4">
+						<a class="item-wrapper" href="{% url 'single_interview' i.id %}">
+							<div class="item-img pb-0">
+								<div class="item-img">
+									<img src="{{ i.thumbnail.url }}" height="150px">
+								</div>
+							</div>
+							<div class="item-content pt-0">
+								<p class="mbr-text mbr-fonts-style text-black mt-3 display-7 text-center">
+									{{ i.title }} 
+								</p>   
+							</div>
+						</a>
+					</div>
+					{% endfor %}
+					<!-- loop till here -->
+				</div>
+			</div>
+			<div class="col-12 col-sm-4" style="max-height: 250px">
+				<!-- headlines sidebar -->
+				<h6 class="col-6 text-muted text-center">Recent headlines</h6>
+				<ul class="list-group" >
+                    {% for n in news %}
+					<li class="list-group-item d-flex justify-content-between align-items-center">
+						<a href="{% url 'single_news' n.id }" class="list-group-item-action">
+							{{ n.headline }}
+						</a>
+						<div class="image-parent ml-2" style="max-width: 40px;">
+							<img src="{{ n.image.url }}" class="img-fluid" alt="quixote">
+						</div>
+					</li>
+                    {% endfor %}
+					<h6 class="text-muted text-right pt-1"><a href=" {% url 'all_news' %}">see more</a></h6>
+				</ul>
+				<!-- headlines sidebar -->	
+			</div>
         </div>
     </div>
 </section>
 
-<section class="video3 cid-so7G3OM0UU" id="video3-m">
-    
-    
-    <div class="container">
-        <div class="mbr-section-head">
-            <h4 class="mbr-section-title mbr-fonts-style mb-0 display-2"><strong>Get inspired by the best</strong></h4>
-            <h5 class="mbr-section-subtitle mbr-fonts-style mb-0 mt-2 display-7">watch interviews of some inspiring personalities</h5>
-        </div>
-        <div class="row mt-4">
-            {% for i in interview %}
-            <div class="col-12 col-sm-6 video-block">
-                <div class="video-wrapper">
-                    <video class="embed-responsive embed-responsive-16by9" poster="{{ i.thumbnail.url }}" controls="controls">
-                        <source src="{{ i.video.url }}" type="video/mp4" />
-                    </video>
-                    <!-- <iframe class="mbr-embedded-video" src="{{ i.video.url }}" width="1280" height="720" frameborder="0" allowfullscreen></iframe> -->
-                </div>
-                <p class="mbr-text pt-2 mbr-fonts-style display-4">
-                    {{ i.title }}<br>
-                    <a href="{% url 'single_interview' i.id %}" class="text-primary">Watch with transcription</a>
-                </p>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
 
 {% endblock %}

@@ -3,8 +3,8 @@ from .models import News, Category, Interview
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 # Create your views here.
 def home(request):
-    news_obj = News.objects.all()[:4]
-    int_obj = Interview.objects.all()[:2]
+    news_obj = News.objects.all()[:5]
+    int_obj = Interview.objects.all()[:10]
     context = {
         'news':news_obj,
         'interview': int_obj
