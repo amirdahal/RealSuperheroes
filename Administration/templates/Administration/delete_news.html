@@ -1,0 +1,31 @@
+{% extends "News/base.html" %}
+
+{% block content %}
+<section class="content4 cid-so8RbLzlhb" id="content4-1z">  
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="title col-md-12 col-lg-10">
+                <h3 class="mbr-section-title mbr-fonts-style align-center mb-4 display-2">
+                    <strong>Confirm Delete?</strong></h3>
+                <h4 class="mbr-section-subtitle align-center mbr-fonts-style mb-4 display-5">
+                    {{ news.headline }}
+                </h4>     
+            </div>
+        </div>
+    </div>
+</section>
+<section class="mbr-section content8 cid-so8YZ9Lct0" id="content8-29">
+    <div class="container">
+        <div class="media-container-row title">
+            <div class="col-12 col-md-8">
+                <div class="mbr-section-btn align-center">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-secondary-outline display-4">DELETE</button>
+                        <a class="btn btn-black-outline display-4" href="{% url 'manage' %}">CANCEL</a></div>
+                    </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

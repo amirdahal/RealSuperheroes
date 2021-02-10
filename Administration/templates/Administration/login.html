@@ -1,0 +1,30 @@
+{% extends "News/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<section class="mbr-section content8 cid-so90dkm9dm" id="content8-2a">
+    <div class="container">
+        <div class="container row">
+            <div class="col-12 col-sm-3"></div>
+            <div class="col-12 col-sm-6">
+                <form method="POST" class="form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <legend class="border-bottom mb-4 text-center">
+                            Log In
+                        </legend>
+                        {{ form|crispy }}
+                    </div>
+                    <div class="form-group text-center">
+                        <button class="btn btn-sm btn-outline-info" type="submit">Login</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-3"></div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock content %}
