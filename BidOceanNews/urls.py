@@ -21,20 +21,25 @@ from News import views as news_views
 from News.views import PostDetailView, AllNews
 from django.contrib.auth import views as auth_views
 from Administration import views as admin_views
-from Interview.views import InterviewDetailView
+from Interview.views import InterviewDetailView, AllInterview
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', news_views.home, name="home"),
-    path('allnews/', news_views.AllNews, name="all_news"),
+    path('news/', news_views.AllNews, name="all_news"),
+    path('interview/', AllInterview, name="all_interview"),
     path('news/<int:pk>/', PostDetailView.as_view(), name="single_news"),
     path('news/category/<int:pk>',news_views.CategoryNews , name="category_news"),
     path('login/', auth_views.LoginView.as_view(template_name = 'Administration/login.html'), name='login'),
     path('logout/', admin_views.logout_view, name='logout'),
-    path('manage/', admin_views.manage, name="manage"),
+    path('manage/news', admin_views.manage_news, name="manage_news"),
+    path('manage/interviews', admin_views.manage_interviews, name="manage_interview"),
     path('news/add/', admin_views.AddNews.as_view(template_name='Administration/add_news.html'), name="add_news"),
+    path('interview/add/', admin_views.AddInterview.as_view(template_name='Administration/add_interview.html'), name="add_interview"),
     path('news/<int:pk>/edit', admin_views.EditNews.as_view(template_name='Administration/edit_news.html'), name="edit_news"),
+    path('interview/<int:pk>/edit', admin_views.EditInterview.as_view(template_name='Administration/edit_interview.html'), name="edit_interview"),
     path('news/<int:pk>/delete', admin_views.DeleteNews, name="delete_news"),
+    path('interview/<int:pk>/delete', admin_views.DeleteInterview, name="delete_interview"),
     path('interview/<int:pk>', InterviewDetailView.as_view(), name="single_interview")
     ]
 

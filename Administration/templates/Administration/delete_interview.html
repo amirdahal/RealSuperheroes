@@ -8,7 +8,7 @@
                 <h3 class="mbr-section-title mbr-fonts-style align-center mb-4 display-2">
                     <strong>Confirm Delete?</strong></h3>
                 <h4 class="mbr-section-subtitle align-center mbr-fonts-style mb-4 display-5">
-                    {{ news.headline }}
+                    {{ news.title }}
                 </h4>     
             </div>
         </div>
@@ -22,7 +22,7 @@
                     <form method="POST">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-secondary-outline display-4">DELETE</button>
-                        <a class="btn btn-black-outline display-4" href="{% url 'manage_news' %}">CANCEL</a></div>
+                        <a class="btn btn-black-outline display-4" href="{% url 'manage_interview' %}">CANCEL</a></div>
                     </form>
             </div>
         </div>
