@@ -6,11 +6,11 @@
             <h4 class="mbr-section-title mbr-fonts-style mb-0 display-2"><strong>Get inspired by the best</strong></h4>
             <h5 class="mbr-section-subtitle mbr-fonts-style mb-0 mt-2 display-7">watch interviews of some inspiring personalities.</h5>
         </div>
-        {% for i in interview %}
         <div class="row">
-            <div class="col-12 col-sm-3 video-block">
-                <div class="video-wrapper">
-                    <video class="embed-responsive embed-responsive-16by9" poster="{{ i.thumbnail.url }}" controls>
+            {% for i in interview %}
+            <div class="col-12 col-sm-3 video-block mt-1">
+                <div class="video-wrapper bg-light" id="{{ i.id }}">
+                    <video class="embed-responsive embed-responsive-16by9" poster="{{ i.thumbnail.url }}"  controls>
                         <source src="{{ i.video.url }}" type="video/mp4" />
                     </video>
                 </div>
@@ -18,8 +18,9 @@
                     <a class="text-primary" href="{% url 'single_interview' i.id %}">{{ i.title }}</a>
                 </p>
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
+        
     </div>
 </section>
 {% endblock content %}
