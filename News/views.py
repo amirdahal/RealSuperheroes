@@ -3,7 +3,7 @@ from .models import News, Category, Interview
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 def home(request):
-    news_obj = News.objects.all()[:5]
+    news_obj = News.objects.all()[:10]
     int_obj = Interview.objects.all()[:9]
     context = {
         'news':news_obj,

@@ -1,0 +1,97 @@
+{% extends 'News/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<section class="form5 cid-so8SlbAhey" id="form5-24"> 
+    <div class="container">
+        <div class="mbr-section-head">
+            <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+                <strong>Leave us a message!</strong>
+			</h3>
+        </div>
+        <div class="row justify-content-center mt-4">
+            <div class="col-lg-8 mx-auto mbr-form" data-form-type="formoid">
+                <form method="POST" class="mbr-form form-with-styler" data-form-title="Form Name">
+                    {% csrf_token %}
+                        {{ form|crispy}}
+                    <div class="col-lg-12 col-md-12 col-sm-12 align-center mbr-section-btn">
+                        <button type="submit" class="btn btn-primary display-4">Send message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="contacts2 cid-so8Sava2ZS" id="contacts2-23">
+    <div class="container">
+        <div class="mbr-section-head">
+            <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2"><strong>Reach us</strong></h3>           
+        </div>
+        <div class="row justify-content-center mt-4">
+            <div class="card col-12 col-md-6">
+                <div class="card-wrapper">
+                    <div class="image-wrapper">
+                        <span class="mbr-iconfont mobi-mbri-phone mobi-mbri"></span>
+                    </div>
+                    <div class="text-wrapper">
+                        <h6 class="card-title mbr-fonts-style mb-1 display-5">
+                            <strong>Phone</strong>
+                        </h6>
+                        <p class="mbr-text mbr-fonts-style display-7">
+                            <a href="tel:+9108967829791" class="text-primary">089678 29791</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="card col-12 col-md-6">
+                <div class="card-wrapper">
+                    <div class="image-wrapper">
+                        <span class="mbr-iconfont mobi-mbri-letter mobi-mbri"></span>
+                    </div>
+                    <div class="text-wrapper">
+                        <h6 class="card-title mbr-fonts-style mb-1 display-5">
+                            <strong>Email</strong>
+                        </h6>
+                        <p class="mbr-text mbr-fonts-style display-7">
+                            <a href="mailto:gangtok@bidocean.biz" class="text-primary">gangtok@bidocean.biz</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="card col-12 col-md-6">
+                <div class="card-wrapper">
+                    <div class="image-wrapper">
+                        <span class="mbr-iconfont mobi-mbri-globe-2 mobi-mbri"></span>
+                    </div>
+                    <div class="text-wrapper">
+                        <h6 class="card-title mbr-fonts-style mb-1 display-5">
+                            <strong>Address</strong>
+                        </h6>
+                        <p class="mbr-text mbr-fonts-style display-7">
+                            Amdo Golai, Deorali Bazar, Gangtok, Sikkim 737102
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="card col-12 col-md-6">
+                <div class="card-wrapper">
+                    <div class="image-wrapper">
+                        <span class="mbr-iconfont mobi-mbri-briefcase mobi-mbri"></span>
+                    </div>
+                    <div class="text-wrapper">
+                        <h6 class="card-title mbr-fonts-style mb-1 display-5">
+                            <strong>Working Hours</strong>
+                        </h6>
+                        <p class="mbr-text mbr-fonts-style display-7">
+                            9:00 - 19:00
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

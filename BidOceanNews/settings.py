@@ -47,6 +47,7 @@ ALLOWED_HOSTS = [ 'localhost']
 # Application definition
 
 INSTALLED_APPS = [
+    'contacts.apps.ContactsConfig',
     'Interview.apps.InterviewConfig',
     'News.apps.NewsConfig',
     'Administration.apps.AdministrationConfig',

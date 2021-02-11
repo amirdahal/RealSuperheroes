@@ -1,0 +1,47 @@
+{% extends 'News/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<section class="mbr-section cid-so8PRHlR60">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="title col-12 col-lg-8">
+                <h2 class="mbr-section-title align-center pb-3 mbr-fonts-style display-2">MESSAGES</h2>
+            </div>
+        </div>
+    </div>
+    <div class="container ">
+        <div class="row justify-content-center">
+            {% comment %} messages loop {% endcomment %}
+            
+            <div class="col-sm-2"></div>
+            {% for message in messages%}
+            <div class="col-12 col-sm-8">
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#message{{message.id}}">
+                                    {{ message.Subject }}
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="message{{message.id}}" class="panel-collapse collapse in">
+                            <div class="panel-body bg-light pl-2">
+                                Name : <b>{{ message.Name }}</b><br>
+                                Email: <a href="mailto:{{message.Email}}"><i>{{ message.Email }}</i></a><br><br>
+                                {{ message.Message }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="col-sm-2"></div>
+            
+            {% comment %} messages loop {% endcomment %}
+        </div>
+    </div>
+</section>
+{% endblock %}

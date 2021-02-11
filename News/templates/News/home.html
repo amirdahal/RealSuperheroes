@@ -43,7 +43,7 @@
 								<div class="flip-card-back pt-4 pl-1 pr-1 bg-dark">
 									<p>{{ i.description|slice:"0:80" }}</p>
 									<p><i>{{ i.event_date }}</i></p>
-									<a class="btn-sm btn-link text-white" href="{% url 'single_interview' i.id %}">Watch <i class="fa fa-play"></i></a>
+									<a class="btn-sm btn-link text-white" href="{% url 'single_interview' i.id %}">Watch&nbsp;<i class="fa fa-play"></i></a>
 								</div>
 							</div>
 						</div>
@@ -69,22 +69,35 @@
 				</div>
 			</div>
 			<div class="col-12 col-sm-3 mt-2 pt-2">
-				<!-- headlines sidebar -->
-				<h6 class="col-12 text-muted text-center">Recent headlines</h6>
-				<ul class="list-group mt-5" style="max-height: 400px; overflow-y: scroll;">
-                    {% for n in news %}
-					<li class="list-group-item d-flex justify-content-between align-items-center">
-						<a href="{% url 'single_news' n.id %}" class="list-group-item-action">
-							{{ n.headline }}
-						</a>
-						<div class="image-parent ml-2" style="max-width: 40px;">
-							<img src="{{ n.image.url }}" class="img-fluid" alt="quixote">
-						</div>
-					</li>
-                    {% endfor %}
-				</ul>
-				<h6 class="text-muted text-right pt-1"><a href=" {% url 'all_news' %}">see more</a></h6>
-				<!-- headlines sidebar -->	
+				<div class="row">
+					<!-- headlines sidebar -->
+					<h6 class="col-12 text-muted text-center">Recent headlines</h6>
+					<ul class="list-group mt-4" style="max-height: 300px; overflow-y: scroll;">
+						{% for n in news %}
+						<li class="list-group-item d-flex justify-content-between align-items-center">
+							<a href="{% url 'single_news' n.id %}" class="list-group-item-action">
+								{{ n.headline }}
+							</a>
+							<div class="image-parent ml-2" style="max-width: 40px;">
+								<img src="{{ n.image.url }}" class="img-fluid" alt="quixote">
+							</div>
+						</li>
+						{% endfor %}
+					</ul>
+					<h6 class="text-muted mr-0"><a href=" {% url 'all_news' %}">see more</a></h6>
+					<!-- headlines sidebar -->	
+
+					<!-- A word from editor -->
+					<h6 class="col-12 text-muted text-center mt-2 pt-2">Annnouncements</h6>
+					<div class="bg-light text-justify col-12 pl-1 pr-1 pt-1 pb-1" style="height:300px; overflow-y:scroll">
+						We are excited to announce that, due to our remarkable growth over the last 5 years, we are expanding!
+						In fact, we are opening a new store in whatever location.<br>
+						We invite you to celebrate with us during the big opening day on whatever. There will be many exciting surprises, including irresistible discounts.
+						<br>If you want to make use of your opening day discount, please click on the button below so we can send you the discount code.
+						<br><br><i>See you there.</i>
+					</div>
+					<!-- A word from editor -->	
+				</div>
 			</div>
         </div>
     </div>
