@@ -3,8 +3,8 @@ from .models import News, Category, Interview
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 def home(request):
-    news_obj = News.objects.all()[:10]
-    int_obj = Interview.objects.all()[:9]
+    news_obj = News.objects.all().order_by("-id")[:10]
+    int_obj = Interview.objects.all().order_by("-id")[:9]
     context = {
         'news':news_obj,
         'interview': int_obj
@@ -18,7 +18,7 @@ class PostDetailView(DetailView):
 
 # Create your views here.
 def AllNews(request):
-    news_obj = News.objects.all()
+    news_obj = News.objects.all().order_by("-id")
     context = {
         'news':news_obj,
         'category': 'All News'
@@ -27,7 +27,7 @@ def AllNews(request):
 
 
 def CategoryNews(request, pk):
-    news_obj = News.objects.filter(category_id = pk)
+    news_obj = News.objects.filter(category_id = pk).order_by("-id")
     context = {
         'news': news_obj,
     }

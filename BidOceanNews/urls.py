@@ -23,6 +23,7 @@ from django.contrib.auth import views as auth_views
 from Administration import views as admin_views
 from Interview.views import InterviewDetailView, AllInterview
 from contacts.views import ContactUs, Messages
+from search.views import Search
 
 
 urlpatterns = [
@@ -30,6 +31,7 @@ urlpatterns = [
     path('', news_views.home, name="home"),
     path('contact/', ContactUs.as_view(), name="contact"),
     path('message/', Messages.as_view(), name="message"),
+    path('search/', Search, name="search"),
     path('news/', news_views.AllNews, name="all_news"),
     path('interview/', AllInterview, name="all_interview"),
     path('news/<int:pk>/', PostDetailView.as_view(), name="single_news"),

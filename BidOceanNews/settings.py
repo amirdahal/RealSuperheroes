@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'contacts.apps.ContactsConfig',
     'Interview.apps.InterviewConfig',
     'News.apps.NewsConfig',
+    'search.apps.SearchConfig',
     'Administration.apps.AdministrationConfig',
     'django.contrib.admin',
     'django.contrib.auth',

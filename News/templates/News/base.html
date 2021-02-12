@@ -73,6 +73,7 @@
                         </div>
                     </li>
                     <li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="{% url 'all_interview' %}">INTERVIEWS</a></li>
+                    <li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="{% url 'search' %}"><i class="fa fa-search" aria-hidden="true"></i><a/></li>
                     {% if  user.is_authenticated %}
                     <li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="{% url 'logout' %}">LOGOUT</a></li>
                     {% endif %}
