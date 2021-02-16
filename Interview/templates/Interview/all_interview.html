@@ -10,11 +10,11 @@
             {% for i in interview %}
             <div class="col-12 col-sm-3 video-block mt-1">
                 <div class="video-wrapper bg-light" id="{{ i.id }}">
-                    <video class="embed-responsive embed-responsive-16by9" poster="{{ i.thumbnail.url }}"  controls>
+                    <video class="embed-responsive embed-responsive-16by9" poster="{{ i.thumbnail.url }}">
                         <source src="{{ i.video.url }}" type="video/mp4" />
                     </video>
                 </div>
-                <p class="mbr-text pt-2 mbr-fonts-style display-6">
+                <p class="mbr-text pt-2 mbr-fonts-style display-6 bg-dark">
                     <a class="text-primary" href="{% url 'single_interview' i.id %}">{{ i.title }}</a>
                 </p>
             </div>

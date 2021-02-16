@@ -2,15 +2,16 @@
 {% load static %}
 
 {% block content %}
-<section class="video5 cid-so7EWEUzN0" id="video5-j">
+<section class="video5 cid-so7EWEUzN0 mb-0" id="video5-j">
     <div class="container">
-        <div class="title-wrapper mb-5">
+        <div class="title-wrapper mb-3">
             <h4 class="mbr-section-title mbr-fonts-style mb-0 display-2"><strong>{{ interview.title}}</strong></h4>
         </div>
         <div class="row">
             <div class="col-12 col-sm-6">
                 <div class="video-wrapper">
-                    <video class="embed-responsive embed-responsive-16by9" poster="{{ interview.thumbnail.url }}" controls autoplay>
+                    <video class="embed-responsive embed-responsive-16by9" poster="{{ interview.thumbnail.url }}" controls>
+                        <track label="English" kind="subtitles" srclang="en" src="{{ interview.subtitles.url }}" default>
                         <source src="{{ interview.video.url }}" type="video/mp4" />
                     </video>
                 </div>
@@ -18,14 +19,14 @@
                     {{ interview.description }}
                 </p>
             </div>
-            <div class="col-12 col-sm-6 mt-0">
-                <div class="text-wrapper">
+            <div class="col-12 col-sm-6 ">
+                <div>
                     <i>{{ interview.event_date|date:"F d, Y" }}</i>
-                    <h3 class="mbr-section-subtitle mbr-fonts-style mb-3 display-5">
+                    {% comment %} <h3 class="mbr-section-subtitle mbr-fonts-style mb-3 display-5">
                         <strong>Transcript</strong>
-                    </h3>
-                    <p class="mbr-text mbr-fonts-style display-7">
-                        Caption :: 
+                    </h3> {% endcomment %}
+                    <p class="mbr-text mbr-fonts-style display-7" style="max-height: 360px; overflow-y: scroll">
+                        Caption :: {{ interview.subtitles.url }}
                     </p>
                 </div>
             </div>

@@ -59,3 +59,12 @@
 ::-webkit-scrollbar-thumb:hover {
   background: black; 
 }
+
+video::cue {
+  background-image: linear-gradient(to bottom, dimgray, lightgray);
+  color: papayawhip;
+}
+
+video::cue(b) {
+  color: peachpuff;
+}

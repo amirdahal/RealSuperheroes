@@ -4,7 +4,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 
 def home(request):
     news_obj = News.objects.all().order_by("-id")[:10]
-    int_obj = Interview.objects.all().order_by("-id")[:9]
+    int_obj = Interview.objects.all().order_by("-id")[:8]
     context = {
         'news':news_obj,
         'interview': int_obj
