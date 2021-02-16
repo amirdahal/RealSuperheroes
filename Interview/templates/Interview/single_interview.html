@@ -11,7 +11,9 @@
             <div class="col-12 col-sm-6">
                 <div class="video-wrapper">
                     <video class="embed-responsive embed-responsive-16by9" poster="{{ interview.thumbnail.url }}" controls>
+                        {% if interview.subtitles %}
                         <track label="English" kind="subtitles" srclang="en" src="{{ interview.subtitles.url }}" default>
+                        {% endif %}
                         <source src="{{ interview.video.url }}" type="video/mp4" />
                     </video>
                 </div>
@@ -26,7 +28,7 @@
                         <strong>Transcript</strong>
                     </h3> {% endcomment %}
                     <p class="mbr-text mbr-fonts-style display-7" style="max-height: 360px; overflow-y: scroll">
-                        Caption :: {{ interview.subtitles.url }}
+                        Caption :: 
                     </p>
                 </div>
             </div>

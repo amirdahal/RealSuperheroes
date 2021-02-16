@@ -57,15 +57,15 @@ def DeleteNews(request, pk):
     if request.method =="POST":  
         obj.delete()
         messages.success(request, f'News has been deleted!')
-        return redirect('/manage_news/')
+        return redirect('manage_news')
     return render(request, "Administration/delete_news.html") 
 
 
 @login_required
 def DeleteInterview(request, pk): 
-    obj = get_object_or_404(News, id = pk) 
+    obj = get_object_or_404(Interview, id = pk) 
     if request.method =="POST":  
         obj.delete()
         messages.success(request, f'Interview has been deleted!')
-        return redirect('/manage_interview/')
+        return redirect('manage_interview')
     return render(request, "Administration/delete_interview.html") 
