@@ -41,7 +41,12 @@ urlpatterns = [
     path('manage/news/', admin_views.manage_news, name="manage_news"),
     path('manage/interviews/', admin_views.manage_interviews, name="manage_interview"),
     path('news/add/', admin_views.AddNews.as_view(template_name='Administration/add_news.html'), name="add_news"),
-    path('interview/add/', admin_views.AddInterview.as_view(template_name='Administration/add_interview.html'), name="add_interview"),
+
+
+    # path('interview/add/', admin_views.AddInterview.as_view(template_name='Administration/add_interview.html'), name="add_interview"),
+    path('interview/add/', admin_views.AddInterview, name="add_interview"),
+
+
     path('news/<int:pk>/edit', admin_views.EditNews.as_view(template_name='Administration/edit_news.html'), name="edit_news"),
     path('interview/<int:pk>/edit', admin_views.EditInterview.as_view(template_name='Administration/edit_interview.html'), name="edit_interview"),
     path('news/<int:pk>/delete', admin_views.DeleteNews, name="delete_news"),

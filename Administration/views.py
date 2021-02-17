@@ -2,9 +2,13 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import logout
 from django.contrib import messages
 from News.models import News, Interview
+from .forms import AddInterviewForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.shortcuts import reverse
+
+from Administration import transcribe
 
 
 def logout_view(request):
@@ -38,9 +42,25 @@ class AddNews(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class AddInterview(LoginRequiredMixin, CreateView):
-    model = Interview
-    fields = ['title', 'thumbnail','event_date', 'description', 'video']
+# class AddInterview(LoginRequiredMixin, CreateView):
+#     model = Interview
+#     fields = ['title', 'thumbnail','event_date', 'description', 'video']
+
+
+@login_required
+def AddInterview(request):
+    if request.method == 'POST':
+        form = AddInterviewForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'Added!')
+            interview_obj = Interview.objects.all().last()
+            transcribe.run(interview_obj)
+            return redirect(reverse('single_interview', kwargs={'pk': interview_obj.id}))
+    else:
+        form = AddInterviewForm()
+    return render(request, 'Administration/add_interview.html', {'form': form})
+    
 
 class EditNews(LoginRequiredMixin, UpdateView):
     model = News
