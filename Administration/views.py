@@ -42,6 +42,7 @@ class AddInterview(LoginRequiredMixin, CreateView):
     model = Interview
     fields = ['title', 'thumbnail','event_date', 'description', 'video']
 
+
 class EditNews(LoginRequiredMixin, UpdateView):
     model = News
     fields = ['category','headline', 'image', 'summary', 'text']
@@ -63,7 +64,7 @@ def DeleteNews(request, pk):
 
 @login_required
 def DeleteInterview(request, pk): 
-    obj = get_object_or_404(Interview, id = pk) 
+    obj = get_object_or_404(Interview, id = pk)
     if request.method =="POST":  
         obj.delete()
         messages.success(request, f'Interview has been deleted!')

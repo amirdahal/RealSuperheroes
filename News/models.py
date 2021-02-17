@@ -5,20 +5,12 @@ from PIL import Image
 from ckeditor.fields import RichTextField
 from django.shortcuts import reverse
 
-# test imports
-import os
-import requests
-import time
-import json
-import subprocess
 
 class Category(models.Model):
     category = models.CharField(max_length=30)
 
     def __str__(self):
         return self.category
-    
-
 
 class News(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
