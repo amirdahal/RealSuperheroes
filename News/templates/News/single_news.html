@@ -44,51 +44,20 @@
             <!--First slide-->
             <div class="carousel-item active">
                 <div class="row">
-
-                    <div class="col-12 col-sm-3">
-                        <div class="card mb-2">
-                            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h4 class="card-title">Card title</h4>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a class="btn btn-sm btn-primary">Button</a>
+                    {% for i in allnews %}
+                        {% if i.category == news.category and i.id != news.id %}
+                            <div class="col-12 col-sm-3 clearfix d-none d-md-block">
+                                <div class="card mb-2">
+                                    <img class="card-img-top" src="{{ i.image.url }}" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h4 class="card-title">{{ i.headline }}</h4>
+                                        <p class="card-text">{{ i.summary|slice:"0:80" }}</p>
+                                        <a class="btn btn-sm btn-primary" href="{% url 'single_news' i.id %}">Button</a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-sm-3 clearfix d-none d-md-block">
-                        <div class="card mb-2">
-                            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(18).jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h4 class="card-title">Card title</h4>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a class="btn btn-sm btn-primary">Button</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-sm-3 clearfix d-none d-md-block">
-                        <div class="card mb-2">
-                            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(18).jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h4 class="card-title">Card title</h4>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a class="btn btn-sm btn-primary">Button</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-sm-3 clearfix d-none d-md-block">
-                        <div class="card mb-2">
-                            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(18).jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h4 class="card-title">Card title</h4>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a class="btn btn-sm btn-primary">Button</a>
-                            </div>
-                        </div>
-                    </div>
-
+                        {% endif %}
+                    {% endfor %}
                 </div>
             </div>
         </div>
