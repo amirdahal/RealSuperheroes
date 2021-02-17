@@ -1,6 +1,30 @@
 {% extends "News/base.html" %}
 {% block content %}
 
+<div class="modal fade" id="deleteModal" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form class="form" name="form" method="POST" action="{% url 'manage_interview' %}">
+			{% csrf_token %}
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirm Delete?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="pk" name="pk">
+					<h6 class="text-muted" id="modal_label"></h6>
+                </div>
+                <div class="modal-footer" style="max-height: 70px">
+                    <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
 <section class="section-table cid-so8MVHP2x9" id="table1-1i">
     <div class="container container-table">
         <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">MANAGE INTERVIEWS</h2> 
@@ -41,13 +65,22 @@
 								<td class="d-flex">
 									<a class="btn btn-sm btn-outline-success" style="min-width:100px" href="{% url 'single_interview' n.id %}">View</a>
 									<a class="btn btn-sm btn-outline-info" style="min-width:100px" href="{% url 'edit_interview' n.id %}">Edit</a>
-									<a class="btn btn-sm btn-outline-danger" style="min-width:100px" href="{% url 'delete_interview' n.id %}">Delete</a>
+									<button class="btn btn-sm btn-outline-danger" role="button" onclick="updateId({{n.id}}, '{{n.title}}')" style="min-width:100px">Delete</button>
 								</td>
 							</tr>
 							{% endfor %}
                     	</tbody>
                 	</table>
             	</div>
+				<script>
+					function updateId(i, h) {
+						document.getElementById('pk').value = i;
+						document.getElementById('modal_label').innerHTML = h;
+						var modal = document.getElementById("deleteModal");
+						$('#deleteModal').modal('show');
+						
+					}
+				</script>
            		<div class="container table-info-container">
              		<div class="row info">
                			<div class="col-md-6">

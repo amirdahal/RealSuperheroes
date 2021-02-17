@@ -15,9 +15,15 @@ def logout_view(request):
     logout(request)
     messages.success(request, f'You have been logged out!!!')
     return redirect('login')
-
+    
 @login_required
-def manage_news(request):
+def manage_news(request): 
+    if request.method =="POST":
+        pk = request.POST.get("pk", "")
+        obj = get_object_or_404(News, id = pk)  
+        obj.delete()
+        messages.success(request, f'News has been deleted!')
+        return redirect('manage_news')
     news_obj = News.objects.all()
     context = {
         'news': news_obj
@@ -26,6 +32,12 @@ def manage_news(request):
 
 @login_required
 def manage_interviews(request):
+    if request.method == "POST":
+        pk = request.POST.get("pk", "")
+        obj = get_object_or_404(Interview, id = pk)  
+        obj.delete()
+        messages.success(request, f'Interview has been deleted!')
+        return redirect('manage_interview')
     interview_obj = Interview.objects.all()
     context = {
         'news': interview_obj
