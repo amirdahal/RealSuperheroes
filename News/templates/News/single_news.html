@@ -47,12 +47,12 @@
                     {% for i in allnews %}
                         {% if i.category == news.category and i.id != news.id %}
                             <div class="col-12 col-sm-3 clearfix d-none d-md-block">
-                                <div class="card mb-2">
+                                <div class="card mb-2" style="background-color: #EBEBE0;">
                                     <img class="card-img-top" src="{{ i.image.url }}" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h4 class="card-title">{{ i.headline }}</h4>
-                                        <p class="card-text">{{ i.summary|slice:"0:80" }}</p>
-                                        <a class="btn btn-sm btn-primary" href="{% url 'single_news' i.id %}">Button</a>
+                                    <div class="card-body pb-0">
+                                        <h6 class="card-title">{{ i.headline }}</h6>
+                                        <small class="card-text">{{ i.summary|slice:"0:80" }}</small>
+                                        <a class="btn btn-sm btn-link" style="text-decoration:none" href="{% url 'single_news' i.id %}">Read</a>
                                     </div>
                                 </div>
                             </div>

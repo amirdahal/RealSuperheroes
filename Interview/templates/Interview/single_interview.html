@@ -5,34 +5,61 @@
 <section class="video5 cid-so7EWEUzN0 mb-0" id="video5-j">
     <div class="container">
         <div class="title-wrapper mb-3">
-            <h4 class="mbr-section-title mbr-fonts-style mb-0 display-2"><strong>{{ interview.title}}</strong></h4>
+            <h4 class="mbr-section-title mbr-fonts-style mb-0 display-2 text-capitalize"><strong>{{ interview.title}}</strong></h4>
         </div>
         <div class="row">
             <div class="col-12 col-sm-6">
-                <div class="video-wrapper">
-                    <video class="embed-responsive embed-responsive-16by9" poster="{{ interview.thumbnail.url }}" controls>
+                <div class="video-wrapper mt-5">
+                    <video id="interview" class="embed-responsive embed-responsive-16by9" poster="{{ interview.thumbnail.url }}" controls>
                         {% if interview.subtitles %}
-                        <track label="English" kind="subtitles" srclang="en" src="{{ interview.subtitles.url }}" default>
+                        <track id="track" label="English" kind="subtitles" srclang="en" src="{{ interview.subtitles.url }}" default>
                         {% endif %}
                         <source src="{{ interview.video.url }}" type="video/mp4" />
                     </video>
                 </div>
-                <p class="mbr-description pt-2 mbr-fonts-style display-4">
+                <p class="mbr-description pt-2 mbr-fonts-style display-4 text-justify">
                     {{ interview.description }}
                 </p>
             </div>
+
             <div class="col-12 col-sm-6 ">
                 <div>
-                    <i>{{ interview.event_date|date:"F d, Y" }}</i>
-                    {% comment %} <h3 class="mbr-section-subtitle mbr-fonts-style mb-3 display-5">
-                        <strong>Transcript</strong>
-                    </h3> {% endcomment %}
-                    <p class="mbr-text mbr-fonts-style display-7" style="max-height: 360px; overflow-y: scroll">
-                        Caption :: 
-                    </p>
+                    <i class="text-muted">{{ interview.event_date|date:"F d, Y" }}</i>
+                    <div class="dropdown-divider"></div>
+                    <div class="mbr-text mbr-fonts-style display-7 text-justify p-3" style="max-height: 360px; overflow-y: scroll" id="transcript">
+                        {{ interview.transcript }}    
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+            {% comment %} transcript control {% endcomment %}
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    var track = document.getElementById('track');
+                    var t = document.getElementById('transcript');
+                    var transcript = t.innerHTML;
+                    
+                    track.addEventListener("cuechange", function () {
+                        found = []
+                        var t1 = transcript;
+                        var myTrack = this.track;
+                        var myCues = myTrack.activeCues;
+
+                        if (myCues.length > 0) {
+                            var trans = myCues[0].getCueAsHTML().textContent;
+                            var startIdx = transcript.search(t);
+                            var endIdx = startIdx + trans.length;
+
+                            var rep = t1.replace(trans, "<h6 id='active_trans' style='background:yellow;'>"+trans+"</h6>")
+                            t.innerHTML = rep;
+                            {% comment %} var el = document.getElementById('active_trans'); {% endcomment %}
+                            var topPos = document.getElementById('active_trans').offsetTop;
+                            t.scrollTop = topPos-100;
+                        }
+                    }, false);
+                }, false);
+            </script>
 {% endblock %}

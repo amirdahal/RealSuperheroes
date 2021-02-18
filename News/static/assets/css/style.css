@@ -60,8 +60,3 @@
   background: black; 
 }
 
-
-
-video::cue() {
-  color: white;
-}

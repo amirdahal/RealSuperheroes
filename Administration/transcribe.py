@@ -5,7 +5,7 @@ from pprint import pprint
 import requests
 import time
 import json
-
+import webvtt
 
 
 def run(current_obj):
@@ -51,10 +51,13 @@ def run(current_obj):
 
 	current_obj.subtitles = "temp/subtitles/{}.vtt".format(_id)
 	current_obj.save()
+	store_transcript = ""
 
-	# def form_valid(self, form):
- #        form.instance.author = self.request.user
- #        return super().form_valid(form)
+	for caption in webvtt.read("media/temp/subtitles/{}.vtt".format(_id)):
+		store_transcript = store_transcript + caption.text +"\n"
+
+	current_obj.transcript = store_transcript
+	current_obj.save()
 
 def get_results(config):
 	endpoint = "https://api.speechtext.ai/results?"
